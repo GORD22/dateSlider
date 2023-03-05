@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/dateSlider/static/css/main.9d36c3d2.css",
-    "main.js": "/dateSlider/static/js/main.cfe3ecfc.js",
+    "main.js": "/dateSlider/static/js/main.58580632.js",
     "index.html": "/dateSlider/index.html",
     "main.9d36c3d2.css.map": "/dateSlider/static/css/main.9d36c3d2.css.map",
-    "main.cfe3ecfc.js.map": "/dateSlider/static/js/main.cfe3ecfc.js.map"
+    "main.58580632.js.map": "/dateSlider/static/js/main.58580632.js.map"
   },
   "entrypoints": [
     "static/css/main.9d36c3d2.css",
-    "static/js/main.cfe3ecfc.js"
+    "static/js/main.58580632.js"
   ]
 }
