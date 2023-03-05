@@ -54,7 +54,7 @@ export const useStyles = makeStyles({
                 top: '-19px',
                 left: '-5px',
             },
-            '@media(max-width: 510px)': {
+            '@media(max-width: 520px)': {
                 top: '-13px',
                 left: '-9px',
             },
@@ -75,7 +75,7 @@ export const useStyles = makeStyles({
                 minWidth: '40px',
                 minHeight: '60px',
             },
-            '@media(max-width: 510px)': {
+            '@media(max-width: 520px)': {
                 minWidth: '30px',
                 minHeight: '50px',
             },
@@ -97,7 +97,7 @@ export const useStyles = makeStyles({
                     right: '54%',
                     height: '2px',
                 },
-                '@media(max-width: 510px)': {
+                '@media(max-width: 520px)': {
                     right: '39%',
                     height: '1px',
                 },
@@ -121,7 +121,7 @@ export const useStyles = makeStyles({
                 fontSize: '12px',
                 lineHeight: '16px',
             },
-            '@media(max-width: 510px)': {
+            '@media(max-width: 520px)': {
                 fontSize: '10px',
                 lineHeight: '14px',
             },
@@ -132,7 +132,7 @@ export const useStyles = makeStyles({
             marginTop: '-3px',
             border: '4px solid #5CADEA',
         },
-        '@media(max-width: 510px)': {
+        '@media(max-width: 520px)': {
             width: '12px',
             height: '12px',
             marginTop: '-3px',
@@ -170,7 +170,7 @@ export const useStyles = makeStyles({
             marginTop: '-6px',
             fontSize: '10px',
         },
-        '@media(max-width: 510px)': {
+        '@media(max-width: 520px)': {
             marginTop: '-10px',
             fontSize: '8px',
         },
@@ -192,7 +192,7 @@ export const useStyles = makeStyles({
         '@media(max-width: 560px)': {
             fontSize: '6px',
         },
-        '@media(max-width: 510px)': {
+        '@media(max-width: 520px)': {
             fontSize: '5px',
         },
     },
