@@ -16,21 +16,10 @@ const DateSlider = ({minDate, maxDate, startDate, endDate}) => {
                     value: sliderValue, label: `${(new Date(date)).getFullYear()}`
                 })
             } else {
-                switch (toggleValue) {
-                    case false:
-                        dates.push({
-                            value: sliderValue
-                        })
-                        break;
-                    case true:
-                        dates.push({
-                            value: sliderValue,
-                            label: `${sliderMonth[(new Date(date)).getMonth()]}`
-                        })
-                        break;
-                    default:
-                        return
-                }
+                dates.push({
+                    value: sliderValue,
+                    label: toggleValue ? `${sliderMonth[(new Date(date)).getMonth()]}` : ''
+                })
             }
             sliderValue++;
             date.setMonth(date.getMonth() + 1);
@@ -43,30 +32,10 @@ const DateSlider = ({minDate, maxDate, startDate, endDate}) => {
 
         return `${labelMonth[date.getMonth()]} ${date.getFullYear()}`
     };
-    const renderSwitch = (isToggle) => {
-        switch (isToggle) {
-            case false:
-                return <ClassesSlider date={date}
-                                      updateRange={updateRange}
-                                      items={getDatesInRange(minDate, maxDate, false)}
-                                      valueLabelFormat={valueLabelFormat}
-                                      isToggle={isToggle}
-                />
-            case true:
-                return <ClassesSlider date={date}
-                                      updateRange={updateRange}
-                                      items={getDatesInRange(minDate, maxDate, true)}
-                                      valueLabelFormat={valueLabelFormat}
-                                      isToggle={isToggle}
-                />
-            default:
-                return
-        }
-    }
 
     const [date, setDate] = useState([
-        (startDate.getFullYear() - minDate.getFullYear())*12 + startDate.getMonth() - minDate.getMonth(),
-        (endDate.getFullYear() - minDate.getFullYear())*12 + endDate.getMonth() - minDate.getMonth()
+        (startDate.getFullYear() - minDate.getFullYear()) * 12 + startDate.getMonth() - minDate.getMonth(),
+        (endDate.getFullYear() - minDate.getFullYear()) * 12 + endDate.getMonth() - minDate.getMonth()
     ]);
     const updateRange = (e, value) => {
         setDate(value)
@@ -81,13 +50,20 @@ const DateSlider = ({minDate, maxDate, startDate, endDate}) => {
                     <div onClick={() => setToggleSlider(false)}
                          className={!toggleSlider ?
                              cn(style.switchElement, style.activeSwitchElement) :
-                             style.switchElement}>Все года</div>
+                             style.switchElement}>Все года
+                    </div>
                     <div onClick={() => setToggleSlider(true)}
                          className={toggleSlider ?
                              cn(style.switchElement, style.activeSwitchElement) :
-                             style.switchElement}>Месяца</div>
+                             style.switchElement}>Месяца
+                    </div>
                 </div>
-                    {renderSwitch(toggleSlider)}
+                <ClassesSlider date={date}
+                               updateRange={updateRange}
+                               items={getDatesInRange(minDate, maxDate, toggleSlider)}
+                               valueLabelFormat={valueLabelFormat}
+                               isToggle={toggleSlider}
+                />
             </div>
         </div>
     )
