@@ -174,9 +174,15 @@ export const useStyles = makeStyles({
             marginTop: '-10px',
             fontSize: '8px',
         },
+        "&:nth-child(13n+5)": {
+            color: '#333333'
+        },
     },
 
     markLabelMonth: {
+        "&:nth-child(13n+5)": {
+            color: '#999999'
+        },
         "&:nth-child(24n+5)": {
             color: '#333333'
         },

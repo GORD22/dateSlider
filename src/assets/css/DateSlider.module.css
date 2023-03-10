@@ -32,12 +32,15 @@
 }
 
 .switchElement {
-    width: 60px;
+    display: block;
+    background: transparent;
     height: 18px;
+    border: none;
     border-bottom: 1px solid #D3DCF1;
     cursor: pointer;
 
     margin-top: 10px;
+    padding: 0;
 
     font-family: 'Raleway', sans-serif;
     font-style: normal;

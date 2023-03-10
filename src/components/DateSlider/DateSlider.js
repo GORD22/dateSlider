@@ -1,26 +1,41 @@
 import React, {useState} from "react";
-import style from "./DateSlider.module.css";
+import style from "../../assets/css/DateSlider.module.css";
 import ClassesSlider from "./SliderWithSettings";
-import {labelMonth, sliderMonth} from "../common/months";
+import {labelMonth, sliderMonth} from "../utils/months";
 import cn from "classnames";
 
 const DateSlider = ({minDate, maxDate, startDate, endDate}) => {
+
+    const [date, setDate] = useState([
+        calculateRange(startDate),
+        calculateRange(endDate)
+    ]);
+
+    const [toggleSlider, setToggleSlider] = useState(false);
+    const updateRange = (e, value) => {
+        setDate(value)
+    };
+    function calculateRange(extremeDate) {
+        return (extremeDate.getFullYear() - minDate.getFullYear()) * 12 +
+            extremeDate.getMonth() - minDate.getMonth()
+    }
+
     const getDatesInRange = (minDate, maxDate, toggleValue) => {
         const date = new Date(minDate.getTime());
         const dates = [];
         let sliderValue = 0;
+        let label = "";
 
         while (date <= maxDate) {
             if ((new Date(date)).getMonth() === 0) {
-                dates.push({
-                    value: sliderValue, label: `${(new Date(date)).getFullYear()}`
-                })
+                label = `${(new Date(date)).getFullYear()}`
             } else {
-                dates.push({
-                    value: sliderValue,
-                    label: toggleValue ? `${sliderMonth[(new Date(date)).getMonth()]}` : ''
-                })
+                label = toggleValue ? `${sliderMonth[(new Date(date)).getMonth()]}` : null
             }
+            dates.push({
+                value: sliderValue,
+                label
+            })
             sliderValue++;
             date.setMonth(date.getMonth() + 1);
         }
@@ -33,38 +48,28 @@ const DateSlider = ({minDate, maxDate, startDate, endDate}) => {
         return `${labelMonth[date.getMonth()]} ${date.getFullYear()}`
     };
 
-    const [date, setDate] = useState([
-        (startDate.getFullYear() - minDate.getFullYear()) * 12 + startDate.getMonth() - minDate.getMonth(),
-        (endDate.getFullYear() - minDate.getFullYear()) * 12 + endDate.getMonth() - minDate.getMonth()
-    ]);
-    const updateRange = (e, value) => {
-        setDate(value)
-    };
-
-    const [toggleSlider, setToggleSlider] = useState(false);
-
     return (
         <div className={style.substrate}>
-            <div className={style.slider}>
-                <div>
-                    <div onClick={() => setToggleSlider(false)}
-                         className={!toggleSlider ?
-                             cn(style.switchElement, style.activeSwitchElement) :
-                             style.switchElement}>Все года
-                    </div>
-                    <div onClick={() => setToggleSlider(true)}
-                         className={toggleSlider ?
-                             cn(style.switchElement, style.activeSwitchElement) :
-                             style.switchElement}>Месяца
-                    </div>
-                </div>
+            <main className={style.slider}>
+                <nav>
+                    <button onClick={() => setToggleSlider(false)}
+                            className={!toggleSlider ?
+                                cn(style.switchElement, style.activeSwitchElement) :
+                                style.switchElement}>Все года
+                    </button>
+                    <button onClick={() => setToggleSlider(true)}
+                            className={toggleSlider ?
+                                cn(style.switchElement, style.activeSwitchElement) :
+                                style.switchElement}>Месяца
+                    </button>
+                </nav>
                 <ClassesSlider date={date}
                                updateRange={updateRange}
                                items={getDatesInRange(minDate, maxDate, toggleSlider)}
                                valueLabelFormat={valueLabelFormat}
                                isToggle={toggleSlider}
                 />
-            </div>
+            </main>
         </div>
     )
 }
